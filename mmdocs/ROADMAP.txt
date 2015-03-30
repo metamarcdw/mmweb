@@ -1,0 +1,15 @@
+finalize whitepaper
+finalize protocol specification
+finalize README
+create git repository
+get default_fee from btcd
+processfeedback verification
+RELEASE!
+weight upvotes on fromuser rep?
+upfront payment?
+auction functionality
+PyQT4 GUI
+2to3
+extensive unit testing
+pycoin HD JSON wallet hybrid (HD->wallet.dat)
+integration /w openassets python module for colored coins trade

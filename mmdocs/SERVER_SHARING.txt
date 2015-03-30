@@ -1,0 +1,3 @@
+If servers (moderators?) subscribe to each other's broadcasts, ident and feedback (reputation), tag, and offer information can be propagated across a network of servers. Moderators can filter offers by tags.
+
+Moderators cull idents with 0 rep weekly?

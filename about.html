@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clean Blog - About</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="post.html">Sample Post</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/network-bg.png')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>METAmarket 'Whitepaper'</h1>
+                        <hr class="small">
+                        <span class="subheading">How it works</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><h3>PREAMBLE: TRUSTLESS MULTISIG ESCROW</h3><br />
+                Adapted from:<br />
+                <a href="http://opine.me/future-of-bitcoin-escrow/"><strong>THE FUTURE OF BITCOIN ESCROW</strong></a><br />
+                by Jeremy Spilman</p>
+                <center>* * *</center>
+                <p>Typically, an escrow involves three parties, where a neutral third party holds the funds while goods are delivered. The escrow agent can either return payment to the buyer, release payment to the seller, or provide for some split in case of disputes. The escrow agent model doesn’t require any fancy crypto; full trust is placed in the escrow agent by both the buyer and seller, and funds are sent from buyer → escrow → seller as usual. However, multisig offers two different ways to run an escrow which changes things up a bit.</p>
+                <p>One option is for the buyer to send funds into a 2-of-3 multisig transaction instead of directly to the escrow agent. The buyer collects one of their own public keys, plus a public key each from the escrow agent and the seller, and then sends the desired number of their own coins into a new account (‘output’) with the requirement that those coins can only be spent if 2 of 3 parties sign off.</p>
+                <p>Even more interesting, is the two party escrow using a 2-of-2 multisig transaction. When Alice sends funds into a 2-of-2 signature MULTISIG address with Alice and Bob’s public keys, what she’s doing is giving Bob a say in how to spend those coins. Alice and Bob must agree on how to spend them, or else the coins cannot be spent. Removing the third party presents an interesting case where simpler structure leads to more complex behavior. What if Alice and Bob simply can’t agree on how to release the coins? How might Alice or Bob try to exploit this?</p>
+                <p>When Alice sends funds into the 2-of-2 multisig, she’s put those coins at risk. If Bob does nothing, and signs nothing, Bob never lifted a finger, but for Alice those coins are effectively lost. This basic asymmetry undermines the core value of a two party escrow, so we are encouraged to find some ways to remedy the situation. We either need Bob to have some skin in the game, so Alice feels more comfortable putting her coins at risk, or we need some fail-safe mechanism to give Alice some downside protection. Bitcoin lets us do either, or both.</p>
+                <p>The first option is to lock up some of Bob’s coins along with Alice’s. That way, Bob can’t simply troll Alice into losing money without losing some of his own. Technically, what we need to do is collect properly sized inputs from both Alice and Bob, and then collect all the coins together into a single multisig output. Doing everything within a single transaction is important, because that way the operation is atomic — either both Alice and Bob’s coins end up in escrow, or nothing ends up in escrow. The coordination level required in order to construct such a transaction is trivial for a centralized service holding both Alice and Bob’s wallets, but highly unusable assuming client-hosted wallets where Alice and Bob only communicate over PGP and Tor.</p>
+                <p>The second option is to setup an automatic release from the escrow where coins are either sent back to Alice, or split some way between Alice and Bob, at some predefined points in the future. This can be done if Alice creates the initial transaction sending her coins into escrow, and she signs the transaction in order to determine its transaction ID (TxID), but then instead of broadcasting the transaction, she keeps the transaction itself secret.</p>
+                <p>Alice sends just the TxID of the not-yet-escrowed coins to Bob, and tells Bob he must sign a new transaction which sends the coins from the escrow back to Alice (or split somehow between Alice and Bob). But this refund transaction will be locked, so that it can only be redeemed at some specified time in the future, using a feature called nLockTime. Alice only broadcasts the transaction which releases her coins into the escrow after she gets back the signed, post-dated refund transaction(s) from Bob. In other words, Bitcoin lets Bob commit to the fail-safe before Alice commits her coins to escrow, which is frankly pretty awesome.</p>
+                <p>Of course, the problem with Bob providing Alice a fail-safe is that now Bob might be worried about Alice simply waiting him out. But the fail-safe can be as ‘strong’ or ‘weak’ as the two parties want to make it, so it’s likely they can agree on something. For example, 25% refund back to Alice after 6 months, or 50/50 split after 2 years, anything is possible.</p>
+                <center>* * *</center>
+                <p><h3>METAMARKET: Trustless federated marketplaces</h3><br />
+                Adapted from:<br />
+                the <a href="http://voluntary.net/bitmarkets/whitepaper/"><strong>BITMARKETS WHITEPAPER</strong></a><br /></p>
+                <center>* * *</center>
+                Introduction
+
+                <p>METAMARKET is an open source protocol and reference client specifying a trustless federated marketplace which uses Bitcoin as a universal currency and Bitmessage as a P2P communication network. Time-locked refund transactions ensure the incentives are aligned toward completing the trade without the need for trusted third parties.
+                Systemic vulnerabilities such as transaction malleability are mitigated through the use of a federated reputation model.</p>
+
+                This document is a non-technical overview of how the METAMARKET client and protocol work. For more technical details, see the protocol specification.
+
+                Motivation
+
+                Overly centralized marketplaces and payment services extract high fees, impose and abuse excessive control and remove any hope of privacy from users. As more commerce moves online, many consumers may find their lifetime history of purchases (including books, personal items and location details) for sale to advertisers, employers, curious neighbors, stalkers, political opponents and government agencies.
+
+                An ideal system would be one of secure private transactions directly between buyer and seller without middle men collecting data or adding fees. Such systems are now feasible by combining recently developed technologies for anonymous decentralized payment and messaging systems.
+
+
+                Implementation
+
+                Architecture
+
+                Client
+                To use the marketplaces, a client application which implements the METAMARKET protocol is required. The client is used to post, browse and execute trades. It also requires a Bitcoin Core wallet to handle payments and refunds. A working client is available at: _________________________.
+
+                Identities
+
+                The client uses Bitmessage (a decentralized identity hiding messaging network)  to broadcast sales, identity, feedback, and to exchange trade related messages. Upon logging into the client, a Bitmessage identity (a public encryption key) is generated which, like an email address, will be used for communications on the network.
+
+                Depositing Funds
+
+                In order to complete a transaction, the buyer must have sufficient funds in their wallet for escrow payment. The client controls your Bitcoin Core wallet in which these funds can be deposited and withdrawn.
+
+                Posting Sales
+
+                Using the client, a vendor specifies the locale, tags, title, description, price, lock time, and refund ratio for the sale and sends this to a specific market operator or 'moderator'. The vendor's client also includes his Bitcoin public key. These posts are then aggregated and broadcast throughout the Bitmessage network where other clients in the same market can see them and make them browsable by buyers. Each client keeps its own copy of the posts. The moderators act as federated hosts and curators of these postings.
+
+                Making an Order
+
+                Using the client, buyers could browse different locales and tags to find products or services for sale. If/when they choose an item to buy, the client creates an order message and sends it via bitmessage to the vendor. The order message includes their Bitcoin public key, the 2of2 multisig address, and the ID of the Bitcoin transaction that will fund the multisig escrow.
+
+                Accepting/Rejecting a Purchase
+
+                If the vendor accepts an order request, a confirmation message is sent to the buyer. The confirmation includes a signed copy of the 'refund transaction'.
+
+                Escrow Lock
+
+                When the vendor approves the purchase, their client constructs the 'refund transaction' which is a time-locked Bitcoin transaction which distributes any funds in the escrow between the buyer and vendor based on the 'refund ratio' and 'locktime' parameters originally offered by the vendor. Once the buyer recieves the confirmation and verifies the correctness of the 'refund transaction' they will broadcast the funding transaction from earlier, locking the funds in escrow; and send a 'payment sent' message to the vendor.
+
+                The buyer's funds are not locked (unavailable for spending) until the funding transaction is submitted to the Bitcoin network. If either party fails to complete the escrow message exchange, either can cancel the trade by sending a cancel message to the other party. Cancellation is only allowed if the completed funding transaction has not been sent to the Bitcoin network first.
+
+                Delivery
+
+                Once escrow lock is complete, but before sending the payment message, the buyer's client prompts them for delivery details for the order. These are then included in the payment message and sent to the vendor for delivery.
+
+                Reciept
+
+                After the payment message is recieved by the vendor's client, it will send back a reciept message to the buyer. This message contains a signed copy of the 'final transaction' which spends all escrowed funds directly to the vendor's wallet.
+
+                Escrow Release
+
+                Upon receiving delivery of a satisfactory good/service, if the buyer chooses to finalize payment, their client will sign and broadcast the 'final transaction' provided in the previous step by the vendor.
+
+                If the buyer does not receive the good/service or finds them unsatisfactory, they can simply choose to sign and broadcast the refund transaction instead, note however that this transaction is time-locked and will not confirm until after the locktime specified for refunds in the original offer.
+
+                In either case, the buyer will then send a 'finalize message' to the vendor recording the ID of the transaction which was actually broadcast.
+
+                Feedback
+
+                After all this, each party is encouraged to construct a boolean feedback message regarding the trade and send it to the moderator to be verified and forwarded to all the other market participants.
+
+                Proof of Burn and Registration Fees
+
+                All market participnts are free at any time to boost or bootstrap their reputation score by burning bitcoins. They must ask their client to construct and broadcast the appropriate transaction and send a message containing its ID to the moderator.
+
+                All moderators will require a nominal fee to register a new identity with the market. This provides the incentive for moderators to operate their markets in addition to attatching a monetary cost to any attempts at a Sybil attack on the market's reputation system.
+
+
+                Notes on Escrow and Reputation
+
+                Choice of Two Party Escrow
+                To appreciate the value of the two party escrow system and why it is so important for secure, private and middleman free commerce, it is worth considering problems with the traditional approach of using a 3rd party escrow agent.
+
+                In a third party escrow system the buyer and seller ask a third trusted party (an escrow agent) to receive payment from the buyer before the item is delivered and to then release the payment to the seller after the item is delivered. If there is a dispute about the quality of the item or whether it was delivered, the third party acts as a mediator and decides whether to send the payment or refund the buyer. Some of the problems with this model include:
+
+                    Unless escrow agent receives the item before forwarding it to the buyer and has the expertise to verify the quality of the item, they have no means of fairly mediating a dispute. This problem becomes much worse when services are being exchanged. Proof of package delivery doesn't verify what was delivered or it's quality and photos from the buyer could be of another item, etc.
+
+                    Credit cards and centralized marketplaces seem like existence proofs of working escrow agents but they are non-anonymous, do not resolve disputes fairly (as most small merchants can tell you) and are known to break in markets with high fraud potential (e.g. third world countries, porn, etc).
+
+                    Untrustworthy escrow agents who may steal escrow, fail to release escrow or collude with (or be) one of the parties.
+
+                    Escrow agents with strong reputation may be doing a long con to take off with or extort a large payment or group of payments.
+
+                    Escrow agent expenses in the form of labor and risk are passed on to the buyer and seller.
+
+                Fortunately, two party escrow made possible by Bitcoin's multi-signature transactions can solve all of these problems.
+
+                Where Reputation Systems Are Required
+
+                For transactions involving goods delivery of the size typical for a users cash transactions, we suspect two party escrow will be sufficient to address the problem of trust. But there are classes of transactions where reputation systems seem to be required. Some examples include:
+
+                    Transactions involving services where buyer and seller meet in person (e.g. taxis) pose a risk that either party may physically coerce the other into releasing the transaction or otherwise harm them.
+
+                    Transactions where there are significant cost for non delivery beyond the price of the item (e.g. urgent medical supplies and services, critical parts, deadline driven projects).
+
+                    Transactions where quality is difficult to objectively assess or where the client may not have the expertise to assess it (e.g. professional services).
+
+                    Transactions where a buyer has strong concerns about exposing their physical address to a potentially malicious seller.
+
+
+                Reputation System
+
+                Reputation systems are incredibly useful, however, there are potential ways for malicious agents to attack them. Systems that do not address these may be worse than no reputation system at all as they can result in users extending trust to untrustworthy parties or unwittingly exposing their real identities. These attacks include:
+
+                Build false distrust: Posting fake negative reviews of competitors.
+	                Mitigated by requiring registration fees to increase the cost of creating sockpuppets.
+
+                Long cons: completing in good faith many transactions in order to accumulate and then exploit trust extended for a large or large group of transactions.
+	                This is an inherent vulnerability of all reputation systems, even those without strong privacy features. However, it can be mitigated by trading on markets with higher downvote multipliers.
+
+                Trusted parties whose computers become compromised:
+	                This is not a threat with two party escrow as economic incentives are aligned regardless of the trustworthiness of the parties.
+
+                Identity leaks via delivery: Attaching reviews or history information to identities in externally verifiable ways can leak information (e.g. timing analysis by combining real world delivery records with online transaction and review times), particularly when gathered over time.
+	                This is somewhat mitigated by the POW function of bitmessage which adds a random time pad to all messages by virtue of the randomness of solving a POW.
+
+                Identity leaks via network analysis: Combining known real world connection data (e.g. social network, business or friend networks) with the reputation system's network of reviews and even a single exposed real identity may provide strong hints to the real identities to other relatively direct connections.
+	                This threat is mitigated by simply not requiring users to attatch real identities to their reputations.
+
+                Choice of Multipliers
+
+                Downvote Multiplier:
+
+                All feedback in the system is boolean (upvote/downvote). In addition, each market has its own downvote multiplier, which can be set to magnify the effect of downvotes on user's reputations.
+
+                Proof of Burn Multiplier:
+
+                Proofs of burn are considered when calculating reputation scores. Each market has its own burn multiplier which is applied to the amount of coins burned and added to the total reputation score.
+
+
+                Choice of Escrow Ratios
+
+                Escrow ratios are chosen by both parties through voluntary agreement in a market setting. Vendors will post a variety of offers with varying refund ratios at various prices and with various reputation requirements based on their willingness to expose themselves to those risks. Buyers will then be free to choose from the options which suit their needs and expectations. An agreement is reached when a buyer chooses an offer and begins the escrow process by making an order. 
+
+
+                <center>* * *</center>
+
+
+                this content is in the public domain
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

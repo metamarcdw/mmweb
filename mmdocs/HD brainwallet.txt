@@ -1,0 +1,27 @@
+HIERARCHICAL DETERMINISTIC BRAINWALLET
+BIP 32/44 COMPLIANT - SINGLE ACCOUNT
+--------------------------------------
+netcode = "XTN"
+usid = "user"
+pswd = "pass"
+
+pswd_hash = hashlib.sha256(pswd).hexdigest()
+pkbytes = scrypt.hash(pswd_hash, usid, N=2**18)
+pkstr = bitcoin.core.b2x(pkbytes)
+
+wallet = pycoin.key.Bip32Node.from_master_secret(pkstr, netcode)
+
+if chain == 'testnet':
+	prefix = "44H/1H/0H/"
+elif chain == 'mainnet':
+	prefix = "44H/0H/0H/"
+signing_key = wallet.subkey(prefix+"0/0")
+
+mm.wallet: JSON Encoded walletfile remembers all used keys.
+{
+	# 0/0 Used ONLY for message signing
+	"num_used_keys": {
+		0: 5	# EXTERNAL: keys used so far (1-5)
+		1: 3	# CHANGE: keys used so far (0-2)
+	}
+}

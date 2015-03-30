@@ -1,0 +1,46 @@
+METAMARKET
+frequently asked questions
+
+	Adapted from the BITMARKETS FAQ
+	http://voluntary.net/bitmarkets/faq/
+
+					* * *
+
+How is METAMARKET different from other decentralized markets?
+
+The main difference is how escrow is handled. OpenBazaar uses a trusted-3rd-party escrow system which can be difficult in pseudonymous reputation systems because they are prone to gaming by parties creating negative reviews for competitors. Brawker likewise uses third party escrow but it makes itself the single centralized "trusted" escrow agent and the centralized host for all listing.
+METAMARKET instead uses two party escrow directly between buyer and seller with no third party. In our system the buyer and vendor agree to a dispersal ratio beforehand using a time-locked multisig bitcoin refund transaction. This, in addition to the federated reuptation system, ensures both parties have an economic incentive to complete the transaction without the need for a trusted 3rd party.
+
+What's the monetization model?
+
+There is none.
+Its about marketplaces with no middle men, including me.
+
+Who is behind it and how much work has gone into this?
+
+Originally created by Marc Wood over about 9 months of part time and weekend work, it is now released to the public under the GPL license
+
+What's the history of the project?
+
+Inspired by Jeremy Spilman's December 2013 blogpost entitled, "The Future of Bitcoin Escrow". I wrote up a rough spec in 2014 for a market based on it that ran over Bitmessage. I then began work on several small bitmessage-oriented side-projects as a means of testing out the Bitmessage API (that would later be used for METAMARKET). The first working version (the command line client) was tested in January 2015.
+
+What's the roadmap for Bitmarkets?
+
+weight upvotes on fromuser rep?
+upfront payment?
+auction functionality
+PyQT4 GUI
+2to3
+extensive unit testing
+pycoin HD JSON wallet hybrid (HD->wallet.dat)
+integration /w openassets python module for colored coins trade
+
+Can I help?
+
+Yes! Please connect with us via _________. Testing, working on the code, marketing, and making tutorial and intro videos would be particularly helpful.
+
+
+					* * *
+
+
+this content is in the public domain

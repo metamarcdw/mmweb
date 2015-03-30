@@ -1,0 +1,62 @@
+METAMARKET Protocol
+A protocol for Federated marketplaces
+
+	Adapted from the BITMARKETS PROTOCOL SPECIFICATION
+	http://voluntary.net/bitmarkets/protocol/
+
+					* * *
+
+Overview
+
+METAMARKET is a protocol and command-line client for a federated marketplace which uses Bitcoin as it's currency and Bitmessage as it's transport protocol. Established refund transactions, reputation scores and identity registration fees are used to ensure incentives are aligned for completing transactions without the need for trusted 3rd parties.
+
+Message Format
+
+Each message contains a top-level JSON formatted dictionary and this dictionary contains a 'msgname' field which specifies the message type, a 'hash' field which specifies a SHA256 hash of the 'obj' field, a 'sig' field which specifies a Bitcoin message signature of the 'obj' field, and finally, the 'obj' field itself, which carries a lower level JSON formatted dictionary that is base64 encoded. This underlying dictionary carries all of the message-specific information. Text strings are ASCII encoded and strings containing binary data are Base64 encoded. All date fields are in Unix time format (seconds since UTC 1970) and rounded to the nearest integer.
+
+Posting
+
+Moderators post adverts for their markets to a particular Bitmessage channel (a publicly known public/private key pair Bitmessage address) where they are picked up and can be browsed by other clients. Using a client, potential users can join up with a particular market or set of markets based on the advertised policies of the moderator(s). The new user may now register and sync up with their chosen market(s).
+Once registered and syned with a market, buyers can browse vendor offers and request a purchase. This channel model also allows for private metamarkets where hard to guess channel names (e.g. a large random numbers) can be used to only allow those those knowing the secret channel name to send or receive channel messages.
+messages: mktoffer, sync, ident, offer
+
+Ordering
+
+If the buyer finds an order with a product and terms that are acceptable, they will create an 'order' message which contains their bitcoin public key, a multisig escrow address, and the ID of a proposed transaction which will fund the escrow. This message is then sent directly to the vendor.
+messages: order
+
+Confirmation
+
+If the vendor accepts an order, they will construct a bitcoin escrow refund transaction where are distributed between the buyer and vendor based on the ratio set forth in the vendor's original offer. A copy of this transaction is then signed and sent to the buyer in a 'confirmation' message.
+messages: conf
+
+Payment (Escrow Lock)
+
+After the buyer's client sees that the refund transaction is correct and signed by the vendor, they are prompted to fund the escrow and to send the seller their delivery details using the 'payment' message.
+messages: pay
+
+Reciept
+
+Once the vendor's client recieves the payment message, they will wait for the funding transaction (which locks the buyers funds in escrow) to confirm. The client will then ask the vendor to deliver the product to the buyer. Then the vendor's client will construct a final bitcoin transaction which sends all escrowed funds to the vendor. The client sends a signed copy of this transaction to the buyer in a 'reciept' message
+messages: rec
+
+Finalization
+
+After the seller provides the good or service to the buyer, the buyer may sign and broadcast the final escrow release transaction which sends the payment to the vendor. The buyer will then send back a 'finalize' message indicating the escrow has been released.
+messages: final
+
+Refund
+
+If the good or service is not provided, the buyer may alternatively sign and broadcast the refund transaction created earlier which disperses the escrowed funds between both parties based on the terms agreed to by the buyer.
+
+Feedback
+
+Regardless of the outcome of the trade, both parties are likely to want to give feedback in order to participate in the reputation system. Each party will send a 'feedback' message directly to the moderator which contains the IDs of the involved parties, the TxID of the transaction which released escrow (be it a normal finalization, or a refund) and a boolean value indicating an upvote or downvote.
+Upon reciept of this message, the moderator will verify the registration of the two parties, verify that the referenced transaction is a release from an escrow between these specific parties, and record the feedback as valid.
+messages: feedback
+
+
+					* * *
+
+
+this content is in the public domain
