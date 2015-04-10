@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>METAmarket - Protocol Specification</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://metamarket.biz">METAmarket</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="whitepaper.html">Whitepaper</a>
+                    </li>
+                    <li>
+                        <a href="protospec.html">Protocol Specification</a>
+                    </li>
+                    <li>
+                        <a href="faq.html">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/blue-tech-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>METAmarket:<br />Protocol Specification</h1>
+                        <h2 class="subheading">Under the Hood</h2>
+                        <span class="meta">Posted by <a href="mailto:metamarc@metamarket.biz">metamarc</a> on August 24, 2014</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p><h3>METAmarket Protocol</h3><br />
+                    Adapted from:<br />
+                    the <a href="http://voluntary.net/bitmarkets/protocol/"><strong>BITMARKETS PROTOCOL SPECIFICATION</strong></a><br /></p>
+                    <center>* * *</center>
+                    
+                    <strong>Overview</strong>
+                    <p>METAMARKET is a protocol and command-line client for a federated marketplace which uses Bitcoin as it's currency and Bitmessage as it's transport protocol. Established refund transactions, reputation scores and identity registration fees are used to ensure incentives are aligned for completing transactions without the need for trusted 3rd parties.</p>
+
+                    <strong>Message Format</strong>
+                    <p>Each message contains a top-level JSON formatted dictionary and this dictionary contains a 'msgname' field which specifies the message type, a 'hash' field which specifies a SHA256 hash of the 'obj' field, a 'sig' field which specifies a Bitcoin message signature of the 'obj' field, and finally, the 'obj' field itself, which carries a lower level JSON formatted dictionary that is base64 encoded. This underlying dictionary carries all of the message-specific information. Text strings are ASCII encoded and strings containing binary data are Base64 encoded. All date fields are in Unix time format (seconds since UTC 1970) and rounded to the nearest integer.</p>
+
+                    <strong>Posting</strong>
+                    <p>Moderators post adverts for their markets to a particular Bitmessage channel (a publicly known public/private key pair Bitmessage address) where they are picked up and can be browsed by other clients. Using a client, potential users can join up with a particular market or set of markets based on the advertised policies of the moderator(s). The new user may now register and sync up with their chosen market(s).<p>
+                    <p>Once registered and syned with a market, buyers can browse vendor offers and request a purchase. This channel model also allows for private metamarkets where hard to guess channel names (e.g. a large random numbers) can be used to only allow those those knowing the secret channel name to send or receive channel messages.</p>
+                    <p>messages: <a href="dats/mktoffer.txt">Market Offer</a>, <a href="dats/sync.txt">Sync</a>, <a href="dats/ident.txt">Identity</a>, <a href="dats/offer.txt">Offer</a></p>
+
+                    <strong>Ordering</strong>
+                    <p>If the buyer finds an order with a product and terms that are acceptable, they will create an 'order' message which contains their bitcoin public key, a multisig escrow address, and the ID of a proposed transaction which will fund the escrow. This message is then sent directly to the vendor.</p>
+                    <p>messages: <a href="dats/order.txt">Order</a></p>
+
+                    <strong>Confirmation</strong>
+                    <p>If the vendor accepts an order, they will construct a bitcoin escrow refund transaction where are distributed between the buyer and vendor based on the ratio set forth in the vendor's original offer. A copy of this transaction is then signed and sent to the buyer in a 'confirmation' message.</p>
+                    <p>messages: <a href="dats/conf.txt">Confirmation</a></p>
+
+                    <strong>Payment (Escrow Lock)</strong>
+                    <p>After the buyer's client sees that the refund transaction is correct and signed by the vendor, they are prompted to fund the escrow and to send the seller their delivery details using the 'payment' message.</p>
+                    <p>messages: <a href="dats/pay.txt">Payment</a></p>
+
+                    <strong>Reciept</strong>
+                    <p>Once the vendor's client recieves the payment message, they will wait for the funding transaction (which locks the buyers funds in escrow) to confirm. The client will then ask the vendor to deliver the product to the buyer. Then the vendor's client will construct a final bitcoin transaction which sends all escrowed funds to the vendor. The client sends a signed copy of this transaction to the buyer in a 'reciept' message</p>
+                    <p>messages: <a href="dats/rec.txt">Reciept</a></p>
+
+                    <strong>Finalization</strong>
+                    <p>After the seller provides the good or service to the buyer, the buyer may sign and broadcast the final escrow release transaction which sends the payment to the vendor. The buyer will then send back a 'finalize' message indicating the escrow has been released.</p>
+                    <p>messages: <a href="dats/final.txt">Finalize</a></p>
+
+                    <strong>Refund</strong>
+                    <p>If the good or service is not provided, the buyer may alternatively sign and broadcast the refund transaction created earlier which disperses the escrowed funds between both parties based on the terms agreed to by the buyer.</p>
+
+                    <strong>Feedback</strong>
+                    <p>Regardless of the outcome of the trade, both parties are likely to want to give feedback in order to participate in the reputation system. Each party will send a 'feedback' message directly to the moderator which contains the IDs of the involved parties, the TxID of the transaction which released escrow (be it a normal finalization, or a refund) and a boolean value indicating an upvote or downvote.</p>
+                    <p>Upon reciept of this message, the moderator will verify the registration of the two parties, verify that the referenced transaction is a release from an escrow between these specific parties, and record the feedback as valid.</p>
+                    <p>messages: <a href="dats/feedback.txt">Feedback</a></p>
+
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p class="copyright text-muted">Copyright &copy; MDW 2015</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

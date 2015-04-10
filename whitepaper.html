@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://metamarket.biz">METAmarket</a>
+                <a class="navbar-brand" href="http://METAmarket.biz">METAmarket</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,7 +57,10 @@
                         <a href="whitepaper.html">Whitepaper</a>
                     </li>
                     <li>
-                        <a href="post.html">Sample Post</a>
+                        <a href="protospec.html">Protocol Specification</a>
+                    </li>
+                    <li>
+                        <a href="faq.html">FAQ</a>
                     </li>
                     <li>
                         <a href="contact.html">Contact</a>
@@ -76,7 +79,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="page-heading">
-                        <h1>METAmarket 'Whitepaper'</h1>
+                        <h1>METAmarket:<br />'Whitepaper'</h1>
                         <hr class="small">
                         <span class="subheading">How it works</span>
                     </div>
@@ -105,13 +108,13 @@
                 <p>Of course, the problem with Bob providing Alice a fail-safe is that now Bob might be worried about Alice simply waiting him out. But the fail-safe can be as ‘strong’ or ‘weak’ as the two parties want to make it, so it’s likely they can agree on something. For example, 25% refund back to Alice after 6 months, or 50/50 split after 2 years, anything is possible.</p>
                 
                 <center>* * *</center>
-                <p><h3>METAMARKET: Trustless federated marketplaces</h3><br />
+                <p><h3>METAmarket: Trustless federated marketplaces</h3><br />
                 Adapted from:<br />
                 the <a href="http://voluntary.net/bitmarkets/whitepaper/"><strong>BITMARKETS WHITEPAPER</strong></a><br /></p>
                 <center>* * *</center>
 
                 <strong>Introduction</strong>
-                <p>METAMARKET is an open source protocol and reference client specifying a trustless federated marketplace which uses Bitcoin as a universal currency and Bitmessage as a P2P communication network. Time-locked refund transactions ensure the incentives are aligned toward completing the trade without the need for trusted third parties. Systemic vulnerabilities such as transaction malleability are mitigated through the use of a federated reputation model. This document is a non-technical overview of how the METAMARKET client and protocol work. For more technical details, see the protocol specification.</p>
+                <p>METAmarket is an open source protocol and reference client specifying a trustless federated marketplace which uses Bitcoin as a universal currency and Bitmessage as a P2P communication network. Time-locked refund transactions ensure that incentives are aligned toward completing the trade without the need for trusted third parties. Systemic vulnerabilities such as transaction malleability are mitigated through the use of a federated reputation model. This document is a non-technical overview of how the METAmarket client and protocol work. For more technical details, see the protocol specification.</p>
                 
                 <strong>Motivation</strong>
                 <p>Overly centralized marketplaces and payment services extract high fees, impose and abuse excessive control and remove any hope of privacy from users. As more commerce moves online, many consumers may find their lifetime history of purchases (including books, personal items and location details) for sale to advertisers, employers, curious neighbors, stalkers, political opponents and government agencies. An ideal system would be one of secure private transactions directly between buyer and seller without middle men collecting data or adding fees. Such systems are now feasible by combining recently developed technologies for anonymous decentralized payment and messaging systems.</p>
@@ -121,11 +124,11 @@
                 <ul>
                     <li><a href="http://bitcoin.org">Bitcoin Core</a> - Reference implementation for the well known p2p digital currency</li>
                     <li><a href="http://bitmessage.org">Bitmessage</a> - an anonymizing encrypted p2p messaging network</li>
-                    <li><a href="http://metamarket.biz">METAmarket</a> client - an application used to participate in metamarkets</li>
+                    <li><a href="http://METAmarket.biz">METAmarket</a> client - an application used to participate in metamarkets</li>
                 </ul>
                 
                 <p>Client</p>
-                <p>To use the marketplaces, a client application which implements the METAMARKET protocol is required. The client is used to post, browse and execute trades. It also requires a Bitcoin Core wallet to handle payments and refunds. A working client is available at <a href="http://metamarket.biz">metamarket.biz.</a></p>
+                <p>To use the marketplaces, a client application which implements the METAmarket protocol is required. The client is used to post, browse and execute trades. It also requires a Bitcoin Core wallet to handle payments and refunds. A working client is available at <a href="http://METAmarket.biz">METAmarket.biz</a>.</p>
 
                 <p>Identities</p>
                 <p>The client uses Bitmessage (a decentralized identity hiding messaging network)  to broadcast sales, identity, feedback, and to exchange trade related messages. Upon logging into the client, a Bitmessage identity (a public encryption key) is generated which, like an email address, will be used for communications on the network.</p>
@@ -144,7 +147,7 @@
 
                 <p>Escrow Lock</p>
                 <p>When the vendor approves the purchase, their client constructs the 'refund transaction' which is a time-locked Bitcoin transaction which distributes any funds in the escrow between the buyer and vendor based on the 'refund ratio' and 'locktime' parameters originally offered by the vendor. Once the buyer recieves the confirmation and verifies the correctness of the 'refund transaction' they will broadcast the funding transaction from earlier, locking the funds in escrow; and send a 'payment sent' message to the vendor.</p>
-                <p>The buyer's funds are not locked (unavailable for spending) until the funding transaction is submitted to the Bitcoin network. If either party fails to complete the escrow message exchange, either can cancel the trade by sending a cancel message to the other party. Cancellation is only allowed if the completed funding transaction has not been sent to the Bitcoin network first.</p>
+                <p>The buyer's funds are not locked (unavailable for spending) until the funding transaction is submitted to the Bitcoin network. If either party fails to complete the escrow message exchange, either can cancel the trade by sending a cancel message to the other party. Cancellation is only allowed if the completed funding transaction has not yet been sent to the Bitcoin network.</p>
 
                 <p>Delivery</p>
                 <p>Once escrow lock is complete, but before sending the payment message, the buyer's client prompts them for delivery details for the order. These are then included in the payment message and sent to the vendor for delivery.</p>
@@ -212,13 +215,7 @@
                 <p>Proofs of burn are considered when calculating reputation scores. Each market has its own burn multiplier which is applied to the amount of coins burned and added to the total reputation score.</p>
 
                 <strong>Choice of Escrow Ratios</strong>
-                <p>Escrow ratios are chosen by both parties through voluntary agreement in a market setting. Vendors will post a variety of offers with varying refund ratios at various prices and with various reputation requirements based on their willingness to expose themselves to those risks. Buyers will then be free to choose from the options which suit their needs and expectations. An agreement is reached when a buyer chooses an offer and begins the escrow process by making an order.</p>
-
-
-                <center>* * *</center>
-
-
-                this content is in the public domain
+                <p>Escrow ratios are chosen by both parties through voluntary agreement in a market setting. Vendors may post a variety of offers with varying refund ratios at various prices and with various reputation requirements based on their willingness to expose themselves to those risks. Buyers will then be free to choose from the options which suit their needs and expectations. An agreement is reached when a buyer chooses an offer and begins the escrow process by making an order.</p>
 
             </div>
         </div>
@@ -231,33 +228,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
+                    <p class="copyright text-muted">Copyright &copy; MDW 2015</p>
                 </div>
             </div>
         </div>
