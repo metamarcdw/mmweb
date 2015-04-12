@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://METAmarket.biz">METAmarket</a>
+                <a class="navbar-brand" href="http://metamarket.biz">METAmarket</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,6 +61,9 @@
                     </li>
                     <li>
                         <a href="faq.html">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="download.html">Download</a>
                     </li>
                     <li>
                         <a href="contact.html">Contact</a>
@@ -100,7 +103,7 @@
                 
                 <p>Typically, an escrow involves three parties, where a neutral third party holds the funds while goods are delivered. The escrow agent can either return payment to the buyer, release payment to the seller, or provide for some split in case of disputes. The escrow agent model doesn’t require any fancy crypto; full trust is placed in the escrow agent by both the buyer and seller, and funds are sent from buyer → escrow → seller as usual. However, multisig offers two different ways to run an escrow which changes things up a bit.</p>
                 <p>One option is for the buyer to send funds into a 2-of-3 multisig transaction instead of directly to the escrow agent. The buyer collects one of their own public keys, plus a public key each from the escrow agent and the seller, and then sends the desired number of their own coins into a new account (‘output’) with the requirement that those coins can only be spent if 2 of 3 parties sign off.</p>
-                <p>Even more interesting, is the two party escrow using a 2-of-2 multisig transaction. When Alice sends funds into a 2-of-2 signature MULTISIG address with Alice and Bob’s public keys, what she’s doing is giving Bob a say in how to spend those coins. Alice and Bob must agree on how to spend them, or else the coins cannot be spent. Removing the third party presents an interesting case where simpler structure leads to more complex behavior. What if Alice and Bob simply can’t agree on how to release the coins? How might Alice or Bob try to exploit this?</p>
+                <p>Even more interesting, is the two party escrow using a 2-of-2 multisig transaction. When Alice sends funds into a 2-of-2 signature multisig address with Alice and Bob’s public keys, what she’s doing is giving Bob a say in how to spend those coins. Alice and Bob must agree on how to spend them, or else the coins cannot be spent. Removing the third party presents an interesting case where simpler structure leads to more complex behavior. What if Alice and Bob simply can’t agree on how to release the coins? How might Alice or Bob try to exploit this?</p>
                 <p>When Alice sends funds into the 2-of-2 multisig, she’s put those coins at risk. If Bob does nothing, and signs nothing, Bob never lifted a finger, but for Alice those coins are effectively lost. This basic asymmetry undermines the core value of a two party escrow, so we are encouraged to find some ways to remedy the situation. We either need Bob to have some skin in the game, so Alice feels more comfortable putting her coins at risk, or we need some fail-safe mechanism to give Alice some downside protection. Bitcoin lets us do either, or both.</p>
                 <p>The first option is to lock up some of Bob’s coins along with Alice’s. That way, Bob can’t simply troll Alice into losing money without losing some of his own. Technically, what we need to do is collect properly sized inputs from both Alice and Bob, and then collect all the coins together into a single multisig output. Doing everything within a single transaction is important, because that way the operation is atomic — either both Alice and Bob’s coins end up in escrow, or nothing ends up in escrow. The coordination level required in order to construct such a transaction is trivial for a centralized service holding both Alice and Bob’s wallets, but highly unusable assuming client-hosted wallets where Alice and Bob only communicate over PGP and Tor.</p>
                 <p>The second option is to setup an automatic release from the escrow where coins are either sent back to Alice, or split some way between Alice and Bob, at some predefined points in the future. This can be done if Alice creates the initial transaction sending her coins into escrow, and she signs the transaction in order to determine its transaction ID (TxID), but then instead of broadcasting the transaction, she keeps the transaction itself secret.</p>
@@ -128,7 +131,7 @@
                 </ul>
                 
                 <p>Client</p>
-                <p>To use the marketplaces, a client application which implements the METAmarket protocol is required. The client is used to post, browse and execute trades. It also requires a Bitcoin Core wallet to handle payments and refunds. A working client is available at <a href="http://METAmarket.biz">METAmarket.biz</a>.</p>
+                <p>To use the marketplaces, a client application which implements the METAmarket protocol is required. The client is used to post, browse and execute trades. It also requires a Bitcoin Core wallet to handle payments and refunds. A working client is available at:<br /><a href="http://github.com/metamarcdw/metamarket">http://github.com/metamarcdw/metamarket</a>.</p>
 
                 <p>Identities</p>
                 <p>The client uses Bitmessage (a decentralized identity hiding messaging network)  to broadcast sales, identity, feedback, and to exchange trade related messages. Upon logging into the client, a Bitmessage identity (a public encryption key) is generated which, like an email address, will be used for communications on the network.</p>
@@ -228,14 +231,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p class="copyright text-muted">Copyright &copy; MDW 2015</p>
+                    <p class="copyright text-muted">Copyright &copy; METAmarket developers 2015</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="js/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

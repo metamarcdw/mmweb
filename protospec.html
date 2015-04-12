@@ -63,6 +63,9 @@
                         <a href="faq.html">FAQ</a>
                     </li>
                     <li>
+                        <a href="download.html">Download</a>
+                    </li>
+                    <li>
                         <a href="contact.html">Contact</a>
                     </li>
                 </ul>
@@ -114,11 +117,11 @@
                     <p>messages: <a href="dats/order.txt">Order</a></p>
 
                     <strong>Confirmation</strong>
-                    <p>If the vendor accepts an order, they will construct a bitcoin escrow refund transaction where are distributed between the buyer and vendor based on the ratio set forth in the vendor's original offer. A copy of this transaction is then signed and sent to the buyer in a 'confirmation' message.</p>
+                    <p>If the vendor accepts an order, they will construct a bitcoin escrow refund transaction where funds are distributed between the buyer and vendor based on the ratio set forth in the vendor's original offer. A copy of this transaction is then signed and sent to the buyer in a 'confirmation' message.</p>
                     <p>messages: <a href="dats/conf.txt">Confirmation</a></p>
 
                     <strong>Payment (Escrow Lock)</strong>
-                    <p>After the buyer's client sees that the refund transaction is correct and signed by the vendor, they are prompted to fund the escrow and to send the seller their delivery details using the 'payment' message.</p>
+                    <p>After the buyer's client verifies that the refund transaction is correct and signed by the vendor, they are prompted to fund the escrow and to send the seller their delivery details using the 'payment' message.</p>
                     <p>messages: <a href="dats/pay.txt">Payment</a></p>
 
                     <strong>Reciept</strong>
@@ -149,14 +152,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p class="copyright text-muted">Copyright &copy; MDW 2015</p>
+                    <p class="copyright text-muted">Copyright &copy; METAmarket developers 2015</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="js/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
