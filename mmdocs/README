@@ -1,3 +1,21 @@
+METAmarket-
+Trustless Federated Marketplaces
+http://metamarket.biz
+
+* * *
+
+INSTALL ON UBUNTU GNU/LINUX:
+
+sudo apt-get install git python-dev libssl-dev
+pip install simplejson, scrypt, pycrypto, simple-crypt, pycoin, python-bitcoinlib
+cd ~
+git clone https://github.com/metamarcdw/metamarket.git
+cd metamarket
+sudo chmod u+x *.py
+./mmcli.py --help
+
+* * *
+
 usage: mmcli.py [-h] [-e ENTITY] [-c CHAIN] [-p BTC_PORT]
                 {checkinbox,processinbox,modbanuser,modbantag,modremoveoffer,showchan,showchanmsg,showmsglist,showmsg,createmsg,sendmsg,sendmarketoffer}
                 ...
