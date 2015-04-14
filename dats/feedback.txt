@@ -1,0 +1,16 @@
+Showing Msg: 0324a614bdb7c11f896b2bfef1f20ca7602f12506c33fd05cddb24fdf11c85c6
+{
+    "hash": "0324a614bdb7c11f896b2bfef1f20ca7602f12506c33fd05cddb24fdf11c85c6",
+    "msgname": 9,
+    "obj": {
+        "finalhash": "7addd6703b93cf741463d78b768e95bb204438ad4556d37c6e8e5d1b74b076fc",
+        "finaltxid": "1b18001c62dadaa7e1047cf336640a56c9b88a68eb6195add2d90d48379b11b3",
+        "fromid": "dd829fbad2789e4dce9a40dccbcd1e334fd44cc74f531ac36b1bba6b7bce670d",
+        "markethash": "483fdde853350b64bc446bebe7b4516066212b1320b3a21933663d455d2dc018",
+        "message": "Sale executed flawlessly, Many thanks.",
+        "price": "0.03",
+        "toid": "4e75bc51e258f84b4b7804c5e85faf4122b68864fe051c7b49bcbc82d3d69516",
+        "upvote": true
+    },
+    "sig": "ILiIBYxXWFyISGgh/IjRRTnVkCpG7LsCqRwlP9oJ+FEBQBNzyP6aefMRojoiCZ0shi8Hmu1jfrYasZl7qovneGA="
+}

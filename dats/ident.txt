@@ -1,0 +1,11 @@
+Showing Msg: fa0cfb95cbd728afbbe43fde8424fe86736a4eeb25ba637a631e7152fd7121ca
+{
+    "hash": "fa0cfb95cbd728afbbe43fde8424fe86736a4eeb25ba637a631e7152fd7121ca",
+    "msgname": 0,
+    "obj": {
+        "bmaddr": "BM-2cXDMNpJBrj2ryetCoPpLYrjMkkVShJSCU",
+        "btcaddr": "mtrkkAWUiQCLYwMfDPo72zkU7sy6DoubX6",
+        "name": "MM mod"
+    },
+    "sig": "H1brpr2+aXFFnmRKWzJ4rEQo7xYhR4UJQnM2t9KaMybqC/k90AVBpXvUXgF+i8FOshuFjlR7q6TVY3/pkdSQ1Do="
+}

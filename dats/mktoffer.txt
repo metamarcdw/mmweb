@@ -1,0 +1,24 @@
+{
+    "market": {
+        "hash": "3e4d47d15b21bfe5745e9111293fcb400b783ea1f99f75435735b16a81248251",
+        "msgname": 2,
+        "obj": {
+            "description": "A Free Market-\nSupports tags related to 3D Printing,\nespecially 3D printed parts.\n",
+            "fee": "0.1",
+            "marketname": "3D Market",
+            "modid": "fa0cfb95cbd728afbbe43fde8424fe86736a4eeb25ba637a631e7152fd7121ca",
+            "multiplier": "10"
+        },
+        "sig": "IDlldLtmLmewTPcobQyjICTKcpexizW9sTrsb9Ie41t47RuR4+T/XEt9IGuaXQ3KMzNmM2/2ugLKmswKiao3A/E="
+    },
+    "modid": {
+        "hash": "fa0cfb95cbd728afbbe43fde8424fe86736a4eeb25ba637a631e7152fd7121ca",
+        "msgname": 0,
+        "obj": {
+            "bmaddr": "BM-2cXDMNpJBrj2ryetCoPpLYrjMkkVShJSCU",
+            "btcaddr": "mtrkkAWUiQCLYwMfDPo72zkU7sy6DoubX6",
+            "name": "MM mod"
+        },
+        "sig": "H3xnhFbe39EtAm9rYk3pe5ejLvT99MDRT3khzgX5sGgSn8QcqyEitydFEM8ExbFyZjvz5EaxjEUE45hCfaYnM44="
+    }
+}

@@ -1,0 +1,19 @@
+Showing Msg: 4df19ce57f2291636229eafd618abc100a2cb1cf137c8794a1bf84f0995aedc1
+{
+    "hash": "4df19ce57f2291636229eafd618abc100a2cb1cf137c8794a1bf84f0995aedc1",
+    "msgname": 3,
+    "obj": {
+        "amount": "1 BARREL, 42 GALLONS",
+        "description": "CRUDE OIL, Black Gold, Texas Tea",
+        "locale": "USA",
+        "locktime": 1417229624,
+        "markethash": "6bf4bacb4cab9cc17f3818e70e883a234ec77950364ca1ab142768f36b5ae917",
+        "name": "OIL - CRUDE",
+        "price": "0.20030443",
+	"ratio": "7.125"
+        "pubkey": "02be3c8de123fbbba538b1fda2514a021342d30d1936670dc1d1094497018c2b72",
+        "vendorid": "fcf916ea4929dd40e8b9083386b1e35d015d42b55b6096ed9ba1dd82a153d864"
+    },
+    "sig": "H2jA2V2NHKZCCWtsV6NFjpUlp58c+9jr4FjBbcQpxKzYI6LySoD8e+IweeZNCwOrnPI3hLuDikLhaG+kCSPuL2w="
+}
+
