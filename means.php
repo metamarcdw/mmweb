@@ -31,7 +31,7 @@
 //  instructions, search for:  *** DISCONNECT INSTRUCTIONS ***
 //  
 //  Generated On: Sun, 02 Aug 2015 11:36:37 -0700
-//  For Domain: metamarket.biz
+//  For Domain: metamarket.trade
 //  
 //  
 
@@ -69,7 +69,7 @@ define('__VANITY_L3',    'provided by Unspam');
 
 define('__DOC_TYPE1',    '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">\n');
 define('__HEAD1',        '<html>\n<head>\n');
-define('__HEAD2',        '<title>http://metamarket.biz</title>\n</head>\n');
+define('__HEAD2',        '<title>http://metamarket.trade</title>\n</head>\n');
 define('__ROBOT1',       '<meta name="robots" content="noarchive,noindex,follow">\n');
 define('__NOCOLLECT1',   '<meta name="no-email-collection" content="/">\n');
 define('__TOP1',         '<body>\n<div align="center">\n');
